@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-obsidian: #070708;
+  --color-obsidian-surface: #0f1012;
+  --color-obsidian-card: #141518;
+  --color-gold: #d4af37;
+  --color-gold-bright: #ecd176;
+  --color-gold-muted: #9e8127;
+  --color-ivory: #f4f2ed;
+  --color-smoke: #a1a1aa;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #070708;
+    color: #f4f2ed;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  h1, h2, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@keyframes goldSweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+@keyframes subtleShimmer {
+  0% {
+    transform: translateX(-140%) skewX(-20deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateX(240%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.78;
+    transform: scale(1.06);
+  }
+}
+
+.gold-sweep-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-sweep-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(236, 209, 118, 0.16) 50%,
+    transparent 100%
+  );
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+}
+
+.gold-sweep-sheen:hover::after {
+  animation: goldSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-card-sheen {
+  position: relative;
+}
+
+.gold-card-sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(236, 209, 118, 0.24) 0%,
+    rgba(212, 175, 55, 0.04) 38%,
+    rgba(255, 255, 255, 0.03) 70%,
+    rgba(236, 209, 118, 0.16) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.45;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-card-sheen:hover::before {
+  opacity: 1;
+}
+
+.logo-entrance-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 55%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(236, 209, 118, 0.28) 50%,
+    transparent 100%
+  );
+  animation: subtleShimmer 1.35s 0.4s cubic-bezier(0.16, 1, 0.3, 1) 1 forwards;
+  pointer-events: none;
+}
+
+.ambient-gold-orb {
+  animation: ambientPulse 9s ease-in-out infinite;
+}
+
+/* Custom slim dark-gold scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070708;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9e8127;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

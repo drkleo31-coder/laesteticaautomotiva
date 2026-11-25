@@ -1,0 +1,6 @@
+{
+  "name": "L.A Estética Automotiva",
+  "description": "Catálogo oficial e agendamento da L.A Estética Automotiva. Precisão nos detalhes e excelência em cada acabamento.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
